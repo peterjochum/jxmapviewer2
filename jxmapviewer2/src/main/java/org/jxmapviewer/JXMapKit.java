@@ -170,10 +170,10 @@ public class JXMapKit extends JPanel
         });
 
         // an overlay for the mini-map which shows a rectangle representing the main map
-        miniMap.setOverlayPainter(new Painter<JXMapViewer>()
+        miniMap.setOverlayPainter(new Painter<AbstractJXMapViewer>()
         {
             @Override
-            public void paint(Graphics2D g, JXMapViewer map, int width, int height)
+            public void paint(Graphics2D g, AbstractJXMapViewer map, int width, int height)
             {
                 // get the viewport rect of the main map
                 Rectangle mainMapBounds = mainMap.getViewportBounds();
@@ -560,7 +560,7 @@ public class JXMapKit extends JPanel
      * Returns a reference to the mini embedded JXMapViewer component
      * @return the minimap JXMapViewer component
      */
-    public JXMapViewer getMiniMap()
+    public AbstractJXMapViewer getMiniMap()
     {
         return this.miniMap;
     }
@@ -635,7 +635,7 @@ public class JXMapKit extends JPanel
     @SuppressWarnings("unchecked")
     private void rebuildMainMapOverlay()
     {
-        CompoundPainter<JXMapViewer> cp = new CompoundPainter<JXMapViewer>();
+        CompoundPainter<AbstractJXMapViewer> cp = new CompoundPainter<>();
         cp.setCacheable(false);
         /*
          * List<Painter> ptrs = new ArrayList<Painter>(); if(isDataProviderCreditShown()) {
@@ -672,22 +672,22 @@ public class JXMapKit extends JPanel
         return this.defaultProvider;
     }
 
-    private AbstractPainter<JXMapViewer> dataProviderCreditPainter = new AbstractPainter<JXMapViewer>(false)
+    private AbstractPainter<AbstractJXMapViewer> dataProviderCreditPainter = new AbstractPainter<>(false)
     {
         @Override
-        protected void doPaint(Graphics2D g, JXMapViewer map, int width, int height)
+        protected void doPaint(Graphics2D g, AbstractJXMapViewer map, int width, int height)
         {
             g.setPaint(Color.WHITE);
             g.drawString("data ", 50, map.getHeight() - 10);
         }
     };
 
-    private WaypointPainter<Waypoint> addressLocationPainter = new WaypointPainter<Waypoint>()
+    private WaypointPainter<Waypoint> addressLocationPainter = new WaypointPainter<>()
     {
         @Override
         public Set<Waypoint> getWaypoints()
         {
-            Set<Waypoint> set = new HashSet<Waypoint>();
+            Set<Waypoint> set = new HashSet<>();
             if (getAddressLocation() != null)
             {
                 set.add(new DefaultWaypoint(getAddressLocation()));

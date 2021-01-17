@@ -8,6 +8,7 @@ import java.util.Set;
 
 import javax.swing.JFrame;
 
+import org.jxmapviewer.AbstractJXMapViewer;
 import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.OSMTileFactoryInfo;
 import org.jxmapviewer.painter.CompoundPainter;
@@ -31,7 +32,7 @@ public class Sample2
      */
     public static void main(String[] args)
     {
-        JXMapViewer mapViewer = new JXMapViewer();
+        AbstractJXMapViewer mapViewer = new JXMapViewer();
 
         // Display the viewer in a JFrame
         JFrame frame = new JFrame("JXMapviewer2 Example 2");
@@ -56,10 +57,10 @@ public class Sample2
         RoutePainter routePainter = new RoutePainter(track);
 
         // Set the focus
-        mapViewer.zoomToBestFit(new HashSet<GeoPosition>(track), 0.7);
+        mapViewer.zoomToBestFit(new HashSet<>(track), 0.7);
 
         // Create waypoints from the geo-positions
-        Set<Waypoint> waypoints = new HashSet<Waypoint>(Arrays.asList(
+        Set<Waypoint> waypoints = new HashSet<>(Arrays.asList(
                 new DefaultWaypoint(frankfurt),
                 new DefaultWaypoint(wiesbaden),
                 new DefaultWaypoint(mainz),
@@ -67,15 +68,15 @@ public class Sample2
                 new DefaultWaypoint(offenbach)));
 
         // Create a waypoint painter that takes all the waypoints
-        WaypointPainter<Waypoint> waypointPainter = new WaypointPainter<Waypoint>();
+        WaypointPainter<Waypoint> waypointPainter = new WaypointPainter<>();
         waypointPainter.setWaypoints(waypoints);
 
         // Create a compound painter that uses both the route-painter and the waypoint-painter
-        List<Painter<JXMapViewer>> painters = new ArrayList<Painter<JXMapViewer>>();
+        List<Painter<AbstractJXMapViewer>> painters = new ArrayList<>();
         painters.add(routePainter);
         painters.add(waypointPainter);
 
-        CompoundPainter<JXMapViewer> painter = new CompoundPainter<JXMapViewer>(painters);
+        CompoundPainter<AbstractJXMapViewer> painter = new CompoundPainter<>(painters);
         mapViewer.setOverlayPainter(painter);
     }
 }
