@@ -8,6 +8,7 @@ import java.awt.geom.Point2D;
 
 import javax.swing.SwingUtilities;
 
+import org.jxmapviewer.AbstractJXMapViewer;
 import org.jxmapviewer.JXMapViewer;
 
 /**
@@ -19,7 +20,7 @@ import org.jxmapviewer.JXMapViewer;
  */
 public class CenterMapListener extends MouseAdapter
 {
-    private JXMapViewer viewer;
+    private AbstractJXMapViewer viewer;
     
     /**
      * @param viewer the jxmapviewer
