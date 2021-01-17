@@ -672,7 +672,7 @@ public class JXMapKit extends JPanel
         return this.defaultProvider;
     }
 
-    private AbstractPainter<AbstractJXMapViewer> dataProviderCreditPainter = new AbstractPainter<AbstractJXMapViewer>(false)
+    private AbstractPainter<AbstractJXMapViewer> dataProviderCreditPainter = new AbstractPainter<>(false)
     {
         @Override
         protected void doPaint(Graphics2D g, AbstractJXMapViewer map, int width, int height)
@@ -682,12 +682,12 @@ public class JXMapKit extends JPanel
         }
     };
 
-    private WaypointPainter<Waypoint> addressLocationPainter = new WaypointPainter<Waypoint>()
+    private WaypointPainter<Waypoint> addressLocationPainter = new WaypointPainter<>()
     {
         @Override
         public Set<Waypoint> getWaypoints()
         {
-            Set<Waypoint> set = new HashSet<Waypoint>();
+            Set<Waypoint> set = new HashSet<>();
             if (getAddressLocation() != null)
             {
                 set.add(new DefaultWaypoint(getAddressLocation()));
