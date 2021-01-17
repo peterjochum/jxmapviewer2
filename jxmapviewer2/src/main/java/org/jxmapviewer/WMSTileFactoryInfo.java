@@ -6,6 +6,7 @@ import org.jxmapviewer.viewer.util.MercatorUtils;
 /**
  * @author Georgios Migdos
  */
+
 public class WMSTileFactoryInfo extends TileFactoryInfo
 {
     private String layers;
@@ -15,7 +16,7 @@ public class WMSTileFactoryInfo extends TileFactoryInfo
     private String srs;
     
 
-    public WMSTileFactoryInfo(int minZoom, int maxZoom, int totalMapZoom, String baseURL, String layers, String styles, String defaultBgColor, String tileFormat, String srs, int tileSize)
+    private WMSTileFactoryInfo(int minZoom, int maxZoom, int totalMapZoom, String baseURL, String layers, String styles, String defaultBgColor, String tileFormat, String srs, int tileSize)
     {
         super(minZoom, maxZoom, totalMapZoom, tileSize, true, true, baseURL, "x", "y", "zoom");
         this.layers = layers;
@@ -24,17 +25,62 @@ public class WMSTileFactoryInfo extends TileFactoryInfo
         this.tileFormat = tileFormat;
         this.srs = srs;
     }
-    
-    public WMSTileFactoryInfo(int minZoom, int maxZoom, int totalMapZoom, String baseURL, String layers, String styles, String defaultBgColor){
-      this(minZoom, maxZoom, totalMapZoom, baseURL, layers, styles, defaultBgColor, "image/jpeg", "EPSG:4326", 255);
-    }
-    
-    public WMSTileFactoryInfo(int minZoom, int maxZoom, int totalMapZoom, String baseURL, String layers, String defaultBgColor){
-      this(minZoom, maxZoom, totalMapZoom, baseURL, layers, "", defaultBgColor);
-    }
-    
-    public WMSTileFactoryInfo(int minZoom, int maxZoom, int totalMapZoom, String baseURL, String layers){
-      this(minZoom, maxZoom, totalMapZoom, baseURL, layers, "0xAFDAF6");
+
+
+    public static class WMSTileFactoryInfoBuilder
+    {
+        private String layers;
+        private String styles="";
+        private String tileBgColor;
+        private String tileFormat;
+        private int tileSize;
+        private String srs;
+
+        private int minZoom;
+        private int maxZoom;
+        private int totalMapZoom;
+        private String baseURL;
+
+
+
+        public WMSTileFactoryInfoBuilder WMSTileFactoryBuilder(int minZoom, int maxZoom, int totalMapZoom, String baseURL, String layers){
+            this.tileFormat="image/jpeg";
+            this.tileSize=255;
+            this.srs="EPSG:4326";
+            this.minZoom=minZoom;
+            this.maxZoom=maxZoom;
+            this.totalMapZoom=totalMapZoom;
+            this.baseURL=baseURL;
+            this.layers=layers;
+            return this;
+        }
+
+        public WMSTileFactoryInfoBuilder withStyles(String styles){
+
+            this.styles=styles;
+            return this;
+        }
+
+        public WMSTileFactoryInfoBuilder withDefaultBgColor(String defaultBgColor){
+
+            this.tileBgColor=defaultBgColor;
+            return this;
+        }
+
+        public WMSTileFactoryInfoBuilder withTileInfo( String tileFormat, String srs, int tileSize){
+
+            this.tileFormat=tileFormat;
+            this.srs=srs;
+            this.tileSize=tileSize;
+            return this;
+        }
+
+        public WMSTileFactoryInfo build(){
+            return new WMSTileFactoryInfo(this.minZoom,this.maxZoom,this.totalMapZoom,this.baseURL,this.layers,this.styles,this.tileBgColor,this.tileFormat,this.srs,this.tileSize);
+        }
+
+
+
     }
 
     @Override

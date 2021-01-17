@@ -8,41 +8,41 @@ import static org.jxmapviewer.util.GraphicsUtilities.createCompatibleImage;
 public abstract class AbstractThumbnailCreator {
     private BufferedImage image;
 
-    public Graphics2D getG2() {
+    protected Graphics2D getG2() {
         return g2;
     }
 
-    public void setG2(Graphics2D g2) {
+    protected void setG2(Graphics2D g2) {
         this.g2 = g2;
     }
 
     private Graphics2D g2;;
 
 
-    public void setThumb(BufferedImage thumb) {
+    protected void setThumb(BufferedImage thumb) {
         this.thumb = thumb;
     }
 
     private BufferedImage thumb=null;
 
 
-    public BufferedImage getImage() {
+    protected BufferedImage getImage() {
         return image;
     }
 
-    public int getWidth() {
+    protected int getWidth() {
         return width;
     }
 
-    public int getHeight() {
+    protected int getHeight() {
         return height;
     }
 
-    public void setWidth(int width) {
+    protected void setWidth(int width) {
         this.width = width;
     }
 
-    public void setHeight(int height) {
+    protected void setHeight(int height) {
         this.height = height;
     }
 
