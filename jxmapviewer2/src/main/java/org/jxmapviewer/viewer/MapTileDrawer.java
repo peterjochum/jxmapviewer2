@@ -152,7 +152,7 @@ public  class MapTileDrawer {
         }
     }
 
-    private void drawTileBorders(Graphics g, int size, int itpx, int itpy, int ox, int oy) {
+    public void drawTileBorders(Graphics g, int size, int itpx, int itpy, int ox, int oy) {
         g.setColor(Color.black);
         g.drawRect(ox, oy, size, size);
         g.drawRect(ox + size / 2 - 5, oy + size / 2 - 5, 10, 10);
