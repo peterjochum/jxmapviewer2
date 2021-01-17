@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.HashSet;
 import java.util.Set;
@@ -81,5 +82,13 @@ public class JXMapViewerTest {
         // Disable panning
         mapViewer.setPanEnabled(false);
         Assertions.assertFalse(mapViewer.isPanningEnabled());
+    }
+
+    @Test
+    public void convertPointToGeoPositionTest() {
+        Point2D point = new Point2D.Double(10, 10);
+        GeoPosition gp = mapViewer.convertPointToGeoPosition(point);
+        Assertions.assertEquals(50.10120276982945, gp.getLatitude());
+        Assertions.assertEquals(8.69293212890625, gp.getLongitude());
     }
 }
