@@ -60,7 +60,7 @@ import org.jxmapviewer.viewer.empty.EmptyTileFactory;
  * property and vice versa.  All three properties are bound.
  * @author Joshua.Marinacci@sun.com
  */
-public class JXMapViewer extends JPanel implements DesignMode
+public class JXMapViewer extends JPanel implements DesignMode,JXMapViewerInterface
 {
     private static final long serialVersionUID = -3530746298586937321L;
 
