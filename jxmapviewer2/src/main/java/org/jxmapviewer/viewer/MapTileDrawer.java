@@ -53,7 +53,6 @@ public  class MapTileDrawer {
         this.isDrawTileBorders=isDrawTileBorders;
         this.isOpaque=isOpaque;
         this.background=background;
-
     }
 
 
